@@ -4,6 +4,12 @@ const cors = require("cors"); //  cors 모듈 추가
 const app = express();
 const port = 3000;
 
+const corsOptions = {
+  // 'http://localhost:3001'
+  // "http://easysub.kro.kr"
+  origin: "http://localhost:3001",
+};
+
 app.use(cors()); // ✅ CORS 허용
 app.use(express.json()); // ✅ JSON 요청 받기
 app.options("/extract-subtitles", cors());
