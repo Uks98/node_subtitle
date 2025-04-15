@@ -7,10 +7,10 @@ const port = 3000;
 const corsOptions = {
   // 'http://localhost:3001'
   // "http://easysub.kro.kr"
-  origin: "http://localhost:3001",
+  origin: "https://easysub.kro.kr",
 };
 
-app.use(cors()); // ✅ CORS 허용
+app.use(cors(corsOptions)); // ✅ CORS 허용
 app.use(express.json()); // ✅ JSON 요청 받기
 app.options("/extract-subtitles", cors());
 
