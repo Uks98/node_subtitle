@@ -4,12 +4,17 @@ const cors = require("cors"); //  cors 모듈 추가
 const app = express();
 const port = 3000;
 
+const allowedOrigins = ["https://easysub.kro.kr", "https://www.easysub.kro.kr"];
 const corsOptions = {
-  // 'http://localhost:3001'
-  // "http://easysub.kro.kr"
-  origin: "https://easysub.kro.kr",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // 허용된 origin
+    } else {
+      callback(new Error("Not allowed by CORS")); // 거절
+    }
+  },
+  credentials: true,
 };
-
 app.use(cors(corsOptions)); // ✅ CORS 허용
 app.use(express.json()); // ✅ JSON 요청 받기
 app.options("/extract-subtitles", cors());
